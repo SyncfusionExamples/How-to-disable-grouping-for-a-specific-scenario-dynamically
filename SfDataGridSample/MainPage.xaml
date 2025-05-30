@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SfDataGridSample"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+             x:Class="SfDataGridSample.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:InstalledModelsViewModel x:Name="viewModel" />
+    </ContentPage.BindingContext>
+    <Grid RowDefinitions="50,*">
+        <Button Text="AddItem"
+                HeightRequest="50"
+                Clicked="Button_Clicked"
+                Grid.Row="0" />
+        <syncfusion:SfDataGrid Grid.Row="1"
+                               x:Name="datagrid"
+                               AllowGroupExpandCollapse="True"
+                               AutoExpandGroups="True"
+                               AutoGenerateColumnsMode="None"
+                               ColumnWidthMode="Auto"
+                               HeaderRowHeight="40"
+                               ItemsSource="{Binding InstalledModels}"
+                               RowHeight="40"
+                               SortingMode="Single">
+
+            <syncfusion:SfDataGrid.DefaultStyle>
+                <syncfusion:DataGridStyle HeaderGridLineColor="Transparent"
+                                          HeaderRowBackground="#2B2B2B"
+                                          CaptionSummaryRowBackground="Red"
+                                          HeaderRowFontSize="14"
+                                          HeaderRowTextColor="{DynamicResource White}"
+                                          RowBackground="Transparent"
+                                          RowFontSize="11" />
+            </syncfusion:SfDataGrid.DefaultStyle>
+            <syncfusion:SfDataGrid.GroupColumnDescriptions>
+                <syncfusion:GroupColumnDescription ColumnName="Location" />
+            </syncfusion:SfDataGrid.GroupColumnDescriptions>
+            <syncfusion:SfDataGrid.Columns>
+                <syncfusion:DataGridTextColumn Grid.Column="0"
+                                               HeaderText="Arch"
+                                               MappingName="Architecture" />
+                <syncfusion:DataGridNumericColumn Grid.Column="1"
+                                                  HeaderText="Params"
+                                                  MappingName="ParameterSize" />
+                <syncfusion:DataGridTextColumn Grid.Column="2"
+                                               HeaderText="Publisher"
+                                               MappingName="Publisher" />
+                <syncfusion:DataGridTextColumn Grid.Column="3"
+                                               ColumnWidthMode="Fill"
+                                               HeaderText="Model"
+                                               MappingName="FullModel"
+                                               MinimumWidth="200" />
+                <syncfusion:DataGridTextColumn Grid.Column="4"
+                                               HeaderText="Quant"
+                                               MappingName="Quantization" />
+                <syncfusion:DataGridTextColumn Grid.Column="5"
+                                               HeaderText="Size"
+                                               MappingName="HumanReadableSize" />
+                <syncfusion:DataGridDateColumn Grid.Column="6"
+                                               Format="MM/dd/yyyy hh:mm tt"
+                                               HeaderText="Date Modified"
+                                               MappingName="ModifiedAt" />
+            </syncfusion:SfDataGrid.Columns>
+        </syncfusion:SfDataGrid>
+    </Grid>
+
+</ContentPage>
